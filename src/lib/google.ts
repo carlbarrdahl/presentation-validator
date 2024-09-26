@@ -9,7 +9,10 @@ const SCOPES = ["https://www.googleapis.com/auth/presentations.readonly"];
 
 const auth = new google.auth.JWT({
   email: serviceAccountKey.client_email,
-  key: serviceAccountKey.private_key,
+  key: (serviceAccountKey.private_key = serviceAccountKey.private_key.replace(
+    /\\n/g,
+    "\n"
+  )),
   scopes: SCOPES,
 });
 
@@ -17,6 +20,7 @@ const slidesService = google.slides({ version: "v1", auth });
 
 export class SlidesParser {
   async parse(presentationId: string) {
+    console.log(process.env.GOOGLE_SERVICE_ACCOUNT_JSON, serviceAccountKey);
     try {
       // Authorize the client
       await auth.authorize();

@@ -55,6 +55,8 @@ export default function Home() {
       fontsUsed,
       slidesWithAudio,
       slidesWithVideo,
+      bulletCount,
+      imageCount,
     } = validate.data;
     return (
       <div className="space-y-4">
@@ -69,6 +71,8 @@ export default function Home() {
           <li>✅ Fonts: {fontsUsed.join(", ")}</li>
           <li>✅ Videos: {slidesWithVideo}</li>
           <li>✅ Audios: {slidesWithAudio}</li>
+          <li>✅ Images: {imageCount}</li>
+          <li>✅ Bullets: {bulletCount}</li>
         </ol>
 
         <Button className="w-full" onClick={() => validate.reset()}>
